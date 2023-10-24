@@ -1,6 +1,6 @@
 # iOSBluetooth
 
 
- - study of how to use CoreBluetooth
+ - Study on How to Use CoreBluetooth
  - working on it
- - this project tested by iPhone12_PRO
+ - This Project Was Tested on iPhone 12 Pro

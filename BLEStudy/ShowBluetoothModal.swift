@@ -55,8 +55,8 @@ class ShowBluetoothModal: UIViewController, UITableViewDelegate, UITableViewData
         bluetoothConnect { (success) in
             if success {
                 print("창닫음")
+                print(self.bluetoothManager.discoveredPeripherals[indexPath.row])
                 ViewController().data = self.bluetoothManager.discoveredPeripherals[indexPath.row]
-                print(ViewController().data ?? "nil")
                 self.dismiss(animated: true, completion: nil) // 조건 달성시 창닫음
             } else {
                 print("연결오류")
@@ -71,7 +71,6 @@ class ShowBluetoothModal: UIViewController, UITableViewDelegate, UITableViewData
 //        bluetoothManager.centralManager.connect(bluetoothManager.discoveredPeripherals[index], options: nil)
 //    }
 
-
     func bluetoothConnect(completion: @escaping (Bool) -> Void) {
         guard let index = selectedIndex else {
             completion(false)
@@ -79,12 +78,9 @@ class ShowBluetoothModal: UIViewController, UITableViewDelegate, UITableViewData
         }
         let peripheral = bluetoothManager.discoveredPeripherals[index]
 
-        // 클로저를 BluetoothManager의 completion 프로퍼티에 설정
-            bluetoothManager.completion = completion
+            bluetoothManager.completion = completion // 클로저를 BluetoothManager의 completion 프로퍼티에 설정
 
-        // 연결 시도...
-        bluetoothManager.centralManager.connect(peripheral, options: nil)
-
+        bluetoothManager.centralManager.connect(peripheral, options: nil) // 연결 시도...
         // 연결 결과는 CBCentralManagerDelegate의 메서드에서 처리될 예정입니다.
         // 해당 메서드에서 completion 콜백을 호출합니다.
     }

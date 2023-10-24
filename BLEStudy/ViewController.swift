@@ -13,12 +13,12 @@ class ViewController: UIViewController {
 
     let bluetoothManager = BluetoothManager.shared
 
-    private var nameLabel: UILabel!
-    private var identifierLabel: UILabel!
+    var nameLabel: UILabel!
+    var identifierLabel: UILabel!
 
     var data: CBPeripheral? {
         didSet {
-            print("\(data as Any) 데이터 전송")
+            print("데이터 \(data as Any) 전송 받음")
             updatePeripheralData()
         }
     }
@@ -26,13 +26,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white // UIViewController들이 배경색이 검정이라 흰색으로 변경
+        setupLabels()
 
+        view.backgroundColor = .white // UIViewController들이 배경색이 검정이라 흰색으로 변경
 
         touchUpScanButton() // 블루투스 스캔 버튼
         touchUpStopButton() // 블루투스 스캔 종료
-
-        updatePeripheralData()
 
         print("hello 블루투스 World")
 
@@ -77,21 +76,30 @@ class ViewController: UIViewController {
         view.addSubview(button) // 화면에 버튼 구현
     }
 
-    private func updatePeripheralData() {
-        guard var nameLabel = nameLabel,
-              var identifierLabel = identifierLabel else {
-            return
-        }
-
-        nameLabel.text = "Name: \(data?.name ?? "Unknown")"
-        identifierLabel.text = "Identifier: \(data?.identifier.uuidString ?? "N/A")"
-
-        // 각 레이블 초기화 및 레이아웃 설정
-        nameLabel = UILabel(frame: CGRect(x: 15, y: 500, width: view.bounds.width - 30, height: 30))
-        identifierLabel = UILabel(frame: CGRect(x: 15, y: 540, width: view.bounds.width - 30, height: 30))
+    private func setupLabels() {
+        // 레이블 초기화 및 레이아웃 설정
+        nameLabel = UILabel(frame: CGRect(x: 40, y: 400, width: 300, height: 30))
+        nameLabel.backgroundColor = .red
+        nameLabel.textColor = .black
+        nameLabel.font = .boldSystemFont(ofSize: 5)
+        identifierLabel = UILabel(frame: CGRect(x: 40, y: 440, width: 300, height: 30))
+        identifierLabel.backgroundColor = .green
+        identifierLabel.textColor = .black
 
         view.addSubview(nameLabel)
         view.addSubview(identifierLabel)
+    }
+
+
+
+    private func updatePeripheralData() {
+        var name = "Name: \(data?.name ?? "Unknown")"
+        var identifier = "Identifier: \(data?.identifier.uuidString ?? "nil???")"
+
+        nameLabel?.text = name // 옵셔널 체인 사용
+        identifierLabel?.text = identifier  // 옵셔널 체인 사용
+        print(nameLabel?.text ?? "이름 못받음")
+        print(identifierLabel?.text ?? "식별번호 못받음")
     }
 
 }
