@@ -10,7 +10,7 @@ import UIKit
 
 class ShowBluetoothModal: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    let bluetoothManager = BluetoothManager.shared
+    let bluetoothManager = BluetoothLEManager.shared
 
     var tableView: UITableView!
     var selectedIndex: Int?
@@ -27,7 +27,7 @@ class ShowBluetoothModal: UIViewController, UITableViewDelegate, UITableViewData
         tableView = UITableView(frame: self.view.bounds)
         tableView.dataSource = self
         tableView.delegate = self
-        BluetoothManager.shared.tableView = tableView
+        BluetoothLEManager.shared.tableView = tableView
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "BluetoothCell")
         self.view.addSubview(tableView)
         self .tableView.reloadData()
@@ -80,7 +80,7 @@ class ShowBluetoothModal: UIViewController, UITableViewDelegate, UITableViewData
 
             bluetoothManager.completion = completion // 클로저를 BluetoothManager의 completion 프로퍼티에 설정
 
-        bluetoothManager.centralManager.connect(peripheral, options: nil) // 연결 시도...
+        bluetoothManager.connect(to: peripheral) // 연결 시도...
         // 연결 결과는 CBCentralManagerDelegate의 메서드에서 처리될 예정입니다.
         // 해당 메서드에서 completion 콜백을 호출합니다.
     }

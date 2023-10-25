@@ -9,9 +9,9 @@ import CoreBluetooth
 import os
 import UIKit
 
-class BluetoothManager : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
+class BluetoothLEManager : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
 
-    static let shared = BluetoothManager()
+    static let shared = BluetoothLEManager()
 
     var centralManager: CBCentralManager!
     var discoveredPeripheral: CBPeripheral?
@@ -92,7 +92,7 @@ class BluetoothManager : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
 
             os_log("Connecting to perhiperal %@", peripheral)
             discoveredPeripherals.append(discoveredPeripheral!)
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { // tableView의 리로딩을 메인스레드에 둬서 자연스럽게 한다
                 self.tableView?.reloadData()
             }
 //            centralManager.connect(peripheral, options: nil) // 장치를 저장하고 연결 시도
@@ -113,6 +113,7 @@ class BluetoothManager : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
 
         // 해당 peripheral에 대한 서비스 탐색 시작
         peripheral.delegate = self
+        print(peripheral.delegate ?? "UNKnown")
         peripheral.discoverServices(nil)
     }
 
@@ -155,10 +156,11 @@ class BluetoothManager : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
 
         if let characteristics = service.characteristics {
             for characteristic in characteristics {
-                // 예를 들어, 원하는 특성의 UUID가 "XXXX-XXXX-..."일 경우
-                if characteristic.uuid == CBUUID(string: "XXXX-XXXX-...") {
+                // 예를 들어, 원하는 특성의 UUID가 QCY-T5_BLER의 "XXXX-XXXX-..."일 경우
+                if characteristic.uuid == CBUUID(string: "20F752FC-B049-B8C0-AA3F-CC34004F702D") {
                     // 2. 특성의 값을 읽습니다.
                     peripheral.readValue(for: characteristic)
+                    print(peripheral.readValue(for: characteristic))
                 }
             }
         }

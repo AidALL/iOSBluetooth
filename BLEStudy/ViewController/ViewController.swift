@@ -11,7 +11,7 @@ import os
 
 class ViewController: UIViewController {
 
-    let bluetoothManager = BluetoothManager.shared
+    let bluetoothManager = BluetoothLEManager.shared
 
     var nameLabel: UILabel!
     var identifierLabel: UILabel!
@@ -25,7 +25,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(bluetoothManager.connectedPeripheral ?? "몰루?")
         setupLabels()
 
         view.backgroundColor = .white // UIViewController들이 배경색이 검정이라 흰색으로 변경
@@ -93,13 +93,13 @@ class ViewController: UIViewController {
 
 
     private func updatePeripheralData() {
-        var name = "Name: \(data?.name ?? "Unknown")"
-        var identifier = "Identifier: \(data?.identifier.uuidString ?? "nil???")"
+        var name: String = String(describing: data?.name) ?? "Unknown"
+        var identifier: String = data?.identifier.uuidString ?? "nil???"
 
-        nameLabel?.text = name // 옵셔널 체인 사용
-        identifierLabel?.text = identifier  // 옵셔널 체인 사용
-        print(nameLabel?.text ?? "이름 못받음")
-        print(identifierLabel?.text ?? "식별번호 못받음")
+        nameLabel?.text = "Name: \(bluetoothManager.connectedPeripheral?.name ?? "Unknown")" // 옵셔널 체인 사용
+        identifierLabel?.text = "Identifier: \(identifier ?? "nil???")"  // 옵셔널 체인 사용
+        print(bluetoothManager.connectedPeripheral?.name ?? "이름 못받음")
+        print(data?.identifier.uuidString ?? "식별번호 못받음")
     }
 
 }
