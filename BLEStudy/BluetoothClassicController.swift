@@ -7,12 +7,21 @@
 
 import UIKit
 
-class BluetoothClassicController: UIViewController {
+class BluetoothClassicController: UIViewController, UITableViewDelegate {
 
     let bluetoothClassic = BluetoothClassicManager.shared
 
+    var tableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView = UITableView(frame: self.view.bounds)
+        tableView.delegate = self
+
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "BluetoothCell")
+        self.view.addSubview(tableView)
+        self .tableView.reloadData()
 
         let connectedAccessories = bluetoothClassic.connectedAccessories
 

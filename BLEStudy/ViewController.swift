@@ -95,11 +95,9 @@ class ViewController: UIViewController {
 
 
     private func updatePeripheralData() {
-        var name: String = String(describing: data?.name) ?? "Unknown"
-        var identifier: String = data?.identifier.uuidString ?? "nil???"
 
         nameLabel?.text = "Name: \(bluetoothManager.connectedPeripheral?.name ?? "Unknown")" // 옵셔널 체인 사용
-        identifierLabel?.text = "Identifier: \(identifier ?? "nil???")"  // 옵셔널 체인 사용
+        identifierLabel?.text = "Identifier: \(bluetoothManager.connectedPeripheral?.identifier.uuidString ?? "nil???")"  // 옵셔널 체인 사용
         print(bluetoothManager.connectedPeripheral?.name ?? "이름 못받음")
         print(data?.identifier.uuidString ?? "식별번호 못받음")
     }

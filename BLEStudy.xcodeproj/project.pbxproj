@@ -66,13 +66,13 @@
 		160D32FA2AE250C800995D19 /* BLEStudy */ = {
 			isa = PBXGroup;
 			children = (
-				167463952AE8F55E000EDD06 /* BLEManager.swift */,
-				167463962AE8F55E000EDD06 /* BluetoothClassicManager.swift */,
-				167463902AE8F54B000EDD06 /* BluetoothClassicController.swift */,
-				167463912AE8F54B000EDD06 /* ShowBluetoothModal.swift */,
-				1674638F2AE8F54B000EDD06 /* ViewController.swift */,
 				160D32FB2AE250C800995D19 /* AppDelegate.swift */,
 				160D32FD2AE250C800995D19 /* SceneDelegate.swift */,
+				167463952AE8F55E000EDD06 /* BLEManager.swift */,
+				167463962AE8F55E000EDD06 /* BluetoothClassicManager.swift */,
+				167463912AE8F54B000EDD06 /* ShowBluetoothModal.swift */,
+				167463902AE8F54B000EDD06 /* BluetoothClassicController.swift */,
+				1674638F2AE8F54B000EDD06 /* ViewController.swift */,
 				160D33062AE250C900995D19 /* LaunchScreen.storyboard */,
 				160D33092AE250C900995D19 /* Info.plist */,
 			);

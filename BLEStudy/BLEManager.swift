@@ -44,7 +44,7 @@ class BluetoothLEManager : NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
         func startScanning() {
             if centralManager.state == .poweredOn { // Bluetooth 중앙 관리자의 상태를 나타내는 state라는 속성이 .poweredOn이면
                 centralManager.scanForPeripherals(withServices: nil, options: nil) // 주변장치 탐색
-                // withServices: 스캔하려는 서비스의 UUID 목록입니다. nil로 설정하면 모든 서비스를 가진 주변 장치를 스캔합니다. 특정 서비스만 스캔하려면 해당 서비스의 UUID 목록을 제공하면 됩니다.
+                // withServices: 스캔하려는 서비스의 UUID 목록입니다. nil로 설정하면 모든 서비스를 가진 주변 장치를 스캔합니다. 특정 서비스만 스캔하려면 "withServices: [serviceUUID]"를 사용
                 // options: 스캔 옵션을 지정하는 딕셔너리입니다. 예를 들어, 이전에 연결이 끊어진 주변 장치를 스캔하려면 CBCentralManagerScanOptionAllowDuplicatesKey 옵션을 사용할 수 있습니다. nil로 설정하면 기본 옵션을 사용합니다.
                 print("스캔 시작...")
             } else {
