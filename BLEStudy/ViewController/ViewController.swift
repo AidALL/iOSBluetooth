@@ -31,47 +31,49 @@ class ViewController: UIViewController {
         view.backgroundColor = .white // UIViewController들이 배경색이 검정이라 흰색으로 변경
 
         touchUpScanButton() // 블루투스 스캔 버튼
-        touchUpStopButton() // 블루투스 스캔 종료
+        touchUpClassicButton() // 블루투스 스캔 종료
 
         print("hello 블루투스 World")
 
     }
 
 
-    @objc func startScanning(_ sender: UIButton) {
+    @objc func BLEButton(_ sender: UIButton) {
         let showBluetooth = ShowBluetoothModal()
-        print("click scanning")
+        print("click BLE")
         self.present(showBluetooth, animated: true, completion: nil)
 //        let _: () = bluetoothManager.startScanning()
     }
 
-    @objc func stopScanning(_ sender: UIButton) {
-        print("stop scanning")
-        let _: () = bluetoothManager.stopScanning()
+    @objc func classic(_ sender: UIButton) {
+        let showClassic = BluetoothClassicController()
+        print("click Classic")
+//        let _: () = bluetoothManager.stopScanning()
+        self.present(showClassic, animated: true, completion: nil)
     }
 
     func touchUpScanButton() {
         let button = UIButton(type: .system) // .system = 기본적인 버튼 스타일
 
-        button.setTitle("Scan", for: .normal)
+        button.setTitle("BLE", for: .normal)
         button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
         button.frame = CGRect(x: 100, y: 100, width: 150, height: 50) // 버튼 속성
 
-        button.addTarget(self, action: #selector (startScanning), for: .touchUpInside) // 버튼에 연결될 기능
+        button.addTarget(self, action: #selector (BLEButton), for: .touchUpInside) // 버튼에 연결될 기능
 
         view.addSubview(button) // 화면에 버튼 구현
     }
 
-    func touchUpStopButton() {
+    func touchUpClassicButton() {
         let button = UIButton(type: .system) // .system = 기본적인 버튼 스타일
 
-        button.setTitle("Stop", for: .normal)
+        button.setTitle("Classic", for: .normal)
         button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
         button.frame = CGRect(x: 100, y: 250, width: 150, height: 50) // 버튼 속성
 
-        button.addTarget(self, action: #selector (stopScanning), for: .touchUpInside) // 버튼에 연결될 기능
+        button.addTarget(self, action: #selector (classic), for: .touchUpInside) // 버튼에 연결될 기능
 
         view.addSubview(button) // 화면에 버튼 구현
     }
