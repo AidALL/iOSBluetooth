@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		160D32FC2AE250C800995D19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D32FB2AE250C800995D19 /* AppDelegate.swift */; };
 		160D32FE2AE250C800995D19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D32FD2AE250C800995D19 /* SceneDelegate.swift */; };
-		160D33002AE250C800995D19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D32FF2AE250C800995D19 /* ViewController.swift */; };
-		160D33052AE250C900995D19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 160D33042AE250C900995D19 /* Assets.xcassets */; };
 		160D33082AE250C900995D19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 160D33062AE250C900995D19 /* LaunchScreen.storyboard */; };
-		167AFF802AE60B9D0070B57A /* CBCentralMangerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167AFF7F2AE60B9D0070B57A /* CBCentralMangerController.swift */; };
-		167AFF842AE74FF20070B57A /* ShowBluetoothModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167AFF832AE74FF20070B57A /* ShowBluetoothModal.swift */; };
+		167463922AE8F54B000EDD06 /* ShowBluetoothModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167463912AE8F54B000EDD06 /* ShowBluetoothModal.swift */; };
+		167463932AE8F54B000EDD06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1674638F2AE8F54B000EDD06 /* ViewController.swift */; };
+		167463942AE8F54B000EDD06 /* BluetoothClassicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167463902AE8F54B000EDD06 /* BluetoothClassicController.swift */; };
+		167463972AE8F55E000EDD06 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167463952AE8F55E000EDD06 /* BLEManager.swift */; };
+		167463982AE8F55E000EDD06 /* BluetoothClassicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167463962AE8F55E000EDD06 /* BluetoothClassicManager.swift */; };
 		167AFF862AE7B9320070B57A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 167AFF852AE7B9320070B57A /* .gitignore */; };
 		167AFF882AE7B97F0070B57A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 167AFF872AE7B97F0070B57A /* README.md */; };
 /* End PBXBuildFile section */
@@ -22,12 +23,13 @@
 		160D32F82AE250C800995D19 /* BLEStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLEStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		160D32FB2AE250C800995D19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		160D32FD2AE250C800995D19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		160D32FF2AE250C800995D19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		160D33042AE250C900995D19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		160D33072AE250C900995D19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		160D33092AE250C900995D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		167AFF7F2AE60B9D0070B57A /* CBCentralMangerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBCentralMangerController.swift; sourceTree = "<group>"; };
-		167AFF832AE74FF20070B57A /* ShowBluetoothModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBluetoothModal.swift; sourceTree = "<group>"; };
+		1674638F2AE8F54B000EDD06 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		167463902AE8F54B000EDD06 /* BluetoothClassicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothClassicController.swift; sourceTree = "<group>"; };
+		167463912AE8F54B000EDD06 /* ShowBluetoothModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBluetoothModal.swift; sourceTree = "<group>"; };
+		167463952AE8F55E000EDD06 /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
+		167463962AE8F55E000EDD06 /* BluetoothClassicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothClassicManager.swift; sourceTree = "<group>"; };
 		167AFF852AE7B9320070B57A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		167AFF872AE7B97F0070B57A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,12 +66,13 @@
 		160D32FA2AE250C800995D19 /* BLEStudy */ = {
 			isa = PBXGroup;
 			children = (
+				167463952AE8F55E000EDD06 /* BLEManager.swift */,
+				167463962AE8F55E000EDD06 /* BluetoothClassicManager.swift */,
+				167463902AE8F54B000EDD06 /* BluetoothClassicController.swift */,
+				167463912AE8F54B000EDD06 /* ShowBluetoothModal.swift */,
+				1674638F2AE8F54B000EDD06 /* ViewController.swift */,
 				160D32FB2AE250C800995D19 /* AppDelegate.swift */,
 				160D32FD2AE250C800995D19 /* SceneDelegate.swift */,
-				160D32FF2AE250C800995D19 /* ViewController.swift */,
-				167AFF7F2AE60B9D0070B57A /* CBCentralMangerController.swift */,
-				167AFF832AE74FF20070B57A /* ShowBluetoothModal.swift */,
-				160D33042AE250C900995D19 /* Assets.xcassets */,
 				160D33062AE250C900995D19 /* LaunchScreen.storyboard */,
 				160D33092AE250C900995D19 /* Info.plist */,
 			);
@@ -137,7 +140,6 @@
 				160D33082AE250C900995D19 /* LaunchScreen.storyboard in Resources */,
 				167AFF862AE7B9320070B57A /* .gitignore in Resources */,
 				167AFF882AE7B97F0070B57A /* README.md in Resources */,
-				160D33052AE250C900995D19 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,11 +150,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				167AFF842AE74FF20070B57A /* ShowBluetoothModal.swift in Sources */,
-				160D33002AE250C800995D19 /* ViewController.swift in Sources */,
+				167463942AE8F54B000EDD06 /* BluetoothClassicController.swift in Sources */,
+				167463972AE8F55E000EDD06 /* BLEManager.swift in Sources */,
+				167463922AE8F54B000EDD06 /* ShowBluetoothModal.swift in Sources */,
 				160D32FC2AE250C800995D19 /* AppDelegate.swift in Sources */,
-				167AFF802AE60B9D0070B57A /* CBCentralMangerController.swift in Sources */,
+				167463932AE8F54B000EDD06 /* ViewController.swift in Sources */,
 				160D32FE2AE250C800995D19 /* SceneDelegate.swift in Sources */,
+				167463982AE8F55E000EDD06 /* BluetoothClassicManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
