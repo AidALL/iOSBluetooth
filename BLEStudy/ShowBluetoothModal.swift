@@ -14,6 +14,7 @@ class ShowBluetoothModal: UIViewController, UITableViewDelegate, UITableViewData
 
     var tableView: UITableView!
     var selectedIndex: Int?
+    var dismissCompletion: (() -> Void)? // 화면이 dismiss 되었을때 호출될 클로저
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -56,8 +57,7 @@ class ShowBluetoothModal: UIViewController, UITableViewDelegate, UITableViewData
             if success {
                 print("창닫음")
                 print(self.bluetoothManager.discoveredPeripherals[indexPath.row])
-                ViewController().data = self.bluetoothManager.discoveredPeripherals[indexPath.row]
-                self.dismiss(animated: true, completion: nil) // 조건 달성시 창닫음
+                self.dismiss(animated: true, completion: { self.dismissCompletion?() }) // 조건 달성시 창닫음 + dismissCompletion 클로저 호출
             } else {
                 print("연결오류")
                 return

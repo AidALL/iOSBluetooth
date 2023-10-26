@@ -15,6 +15,7 @@
 		167463942AE8F54B000EDD06 /* BluetoothClassicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167463902AE8F54B000EDD06 /* BluetoothClassicController.swift */; };
 		167463972AE8F55E000EDD06 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167463952AE8F55E000EDD06 /* BLEManager.swift */; };
 		167463982AE8F55E000EDD06 /* BluetoothClassicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167463962AE8F55E000EDD06 /* BluetoothClassicManager.swift */; };
+		1674639A2AE918AA000EDD06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 167463992AE918AA000EDD06 /* Assets.xcassets */; };
 		167AFF862AE7B9320070B57A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 167AFF852AE7B9320070B57A /* .gitignore */; };
 		167AFF882AE7B97F0070B57A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 167AFF872AE7B97F0070B57A /* README.md */; };
 /* End PBXBuildFile section */
@@ -30,6 +31,7 @@
 		167463912AE8F54B000EDD06 /* ShowBluetoothModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBluetoothModal.swift; sourceTree = "<group>"; };
 		167463952AE8F55E000EDD06 /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
 		167463962AE8F55E000EDD06 /* BluetoothClassicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothClassicManager.swift; sourceTree = "<group>"; };
+		167463992AE918AA000EDD06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		167AFF852AE7B9320070B57A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		167AFF872AE7B97F0070B57A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +77,7 @@
 				1674638F2AE8F54B000EDD06 /* ViewController.swift */,
 				160D33062AE250C900995D19 /* LaunchScreen.storyboard */,
 				160D33092AE250C900995D19 /* Info.plist */,
+				167463992AE918AA000EDD06 /* Assets.xcassets */,
 			);
 			path = BLEStudy;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			files = (
 				160D33082AE250C900995D19 /* LaunchScreen.storyboard in Resources */,
 				167AFF862AE7B9320070B57A /* .gitignore in Resources */,
+				1674639A2AE918AA000EDD06 /* Assets.xcassets in Resources */,
 				167AFF882AE7B97F0070B57A /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

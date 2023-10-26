@@ -146,8 +146,6 @@ class BluetoothLEManager : NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
             } // 오류 확인
     }
 
-    // 1. 서비스와 특성 탐색 (이미 발견된 상황을 가정합니다)
-
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         if let error = error {
             print("Error discovering characteristics: \(error.localizedDescription)")
@@ -158,15 +156,13 @@ class BluetoothLEManager : NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
             for characteristic in characteristics {
                 // 예를 들어, 원하는 특성의 UUID가 QCY-T5_BLER의 "XXXX-XXXX-..."일 경우
                 if characteristic.uuid == CBUUID(string: "20F752FC-B049-B8C0-AA3F-CC34004F702D") {
-                    // 2. 특성의 값을 읽습니다.
+                    // 특성의 값을 읽습니다.
                     peripheral.readValue(for: characteristic)
-                    print(peripheral.readValue(for: characteristic))
-                }
+                    print("characteristic: \(peripheral.readValue(for: characteristic))")
+                } else { print("characteristic is not defined") }
             }
         }
-    }
-
-    // 3. peripheral(_:didUpdateValueFor:error:) 메서드에서 읽은 값을 처리합니다.
+    } // 서비스와 특성 탐색 (이미 발견된 상황을 가정합니다)
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if let error = error {
@@ -180,6 +176,6 @@ class BluetoothLEManager : NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
             let valueString = String(data: data, encoding: .utf8)
             print("Read value: \(valueString ?? "unknown")")
         }
-    }
+    } // peripheral(_:didUpdateValueFor:error:) 메서드에서 읽은 값을 처리합니다.
 
 }
