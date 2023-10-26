@@ -42,6 +42,7 @@ class ViewController: UIViewController {
 
         showBluetooth.dismissCompletion = { [weak self] in
             self?.updatePeripheralData()
+//            bluetoothManager.0
         } // ShowBluetoothModal의 dismissCompletion 클로저를 받아서 updatePeripheralData() 실행
     }
 
@@ -102,7 +103,6 @@ class ViewController: UIViewController {
         nameLabel = UILabel(frame: CGRect(x: 40, y: 400, width: 300, height: 30))
         nameLabel.backgroundColor = .red
         nameLabel.textColor = .black
-        nameLabel.font = .boldSystemFont(ofSize: 5)
         nameLabel.text = ""
         identifierLabel = UILabel(frame: CGRect(x: 40, y: 440, width: 300, height: 30))
         identifierLabel.backgroundColor = .green

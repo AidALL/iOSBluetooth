@@ -113,7 +113,7 @@ class BluetoothLEManager : NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
 
         // 해당 peripheral에 대한 서비스 탐색 시작
         peripheral.delegate = self
-        print(peripheral.delegate ?? "UNKnown")
+        print(("서비스에 연결이 되었다 \(String(describing: peripheral))"))
         peripheral.discoverServices(nil)
     }
 
@@ -140,10 +140,26 @@ class BluetoothLEManager : NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
     }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-            if let error = error {
-                print("Error discovering services: \(error.localizedDescription)")
-                return
-            } // 오류 확인
+        if let error = error {
+            print("Error discovering services: \(error.localizedDescription)")
+            return
+        } // 오류 확인
+        guard let services = peripheral.services else { return }
+        print("서비스 검색 오류 없음")
+
+            for service in services {
+                // 원하는 서비스의 UUID를 확인합니다.
+                if service.uuid.uuidString.contains("9BD1EF8F-4519-FCAD") {
+                    // 원하는 서비스를 찾았을 때 처리할 작업을 수행합니다.
+                    print("원하는 서비스를 찾았습니다: \(service)")
+                    // 예를 들어, 해당 서비스의 특성을 탐색할 수 있습니다.
+                    print(peripheral.discoverCharacteristics(nil, for: service))
+                    peripheral.discoverCharacteristics(nil, for: service)
+                } else { 
+                    print("원하던 서비스가 아닙니다만 검색은 해봄: \(service)")
+                    peripheral.discoverCharacteristics(nil, for: service)
+                }
+            }
     }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
@@ -152,16 +168,22 @@ class BluetoothLEManager : NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
             return
         }
 
-        if let characteristics = service.characteristics {
+        guard let characteristics = service.characteristics else { return }
+
             for characteristic in characteristics {
-                // 예를 들어, 원하는 특성의 UUID가 QCY-T5_BLER의 "XXXX-XXXX-..."일 경우
-                if characteristic.uuid == CBUUID(string: "20F752FC-B049-B8C0-AA3F-CC34004F702D") {
-                    // 특성의 값을 읽습니다.
-                    peripheral.readValue(for: characteristic)
-                    print("characteristic: \(peripheral.readValue(for: characteristic))")
-                } else { print("characteristic is not defined") }
+                print("Discovered characteristic: \(characteristic)")
+
+                // 특정 특성에 대해 특정 작업을 수행하려면, 해당 특성의 UUID를 확인하고 조건부로 작업을 수행하세요.
+                // 예를 들어, 특정 특성의 값을 읽으려면 다음과 같이 할 수 있습니다.
+                // if characteristic.uuid == CBUUID(string: "특정 특성의 UUID") {
+                //     peripheral.readValue(for: characteristic)
+                // }
+
+                // 또는 모든 특성의 값을 읽거나 구독하려면 다음과 같이 할 수 있습니다.
+                peripheral.readValue(for: characteristic)
+                peripheral.setNotifyValue(true, for: characteristic)
             }
-        }
+
     } // 서비스와 특성 탐색 (이미 발견된 상황을 가정합니다)
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
