@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         touchUpScanButton() // 블루투스 스캔 버튼
         touchUpClassicButton() // 블루투스 스캔 종료
 
-        touch() // 수동 데이터 업데이트용 임시버튼
+        sendData() // 수동 데이터 업데이트용 임시버튼
 
         print("hello 블루투스 World")
 
@@ -53,10 +53,18 @@ class ViewController: UIViewController {
         self.present(showClassic, animated: true, completion: nil)
     }
 
-    @objc func updateLabel(_ sender: UIButton) {
-        let _: () = updatePeripheralData() // 클로저 오류일때 수동으로 데이터 업데이트용
-        print("수동 데이터 업데이트")
-    }
+    @objc func updateData() {
+            let dataToSend = "Hello from AnotherViewController".data(using: .utf8)!
+
+            if let characteristic = bluetoothManager.writableCharacteristic,
+               let peripheral = bluetoothManager.connectedPeripheral {
+                bluetoothManager.writeValue(toCharacteristic: characteristic, onPeripheral: peripheral, value: dataToSend)
+                print("데이터 전송 성공")
+            } else {
+                print("특성 또는 퍼리퍼럴이 nil입니다.")
+            }
+        }
+    
 
     func touchUpScanButton() {
         let button = UIButton(type: .system) // .system = 기본적인 버튼 스타일
@@ -85,7 +93,7 @@ class ViewController: UIViewController {
     }
 
 
-    func touch() {
+    func sendData() {
         let button = UIButton(type: .system) // .system = 기본적인 버튼 스타일
 
         button.setTitle("Cc", for: .normal)
@@ -93,7 +101,7 @@ class ViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.frame = CGRect(x: 100, y: 300, width: 50, height: 50) // 버튼 속성
 
-        button.addTarget(self, action: #selector (updateLabel), for: .touchUpInside) // 버튼에 연결될 기능
+        button.addTarget(self, action: #selector (updateData), for: .touchUpInside) // 버튼에 연결될 기능
 
         view.addSubview(button)
     }
