@@ -26,6 +26,7 @@
 		160D32FD2AE250C800995D19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		160D33072AE250C900995D19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		160D33092AE250C900995D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1660F17C2B50F58B008122C3 /* Docs.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Docs.md; sourceTree = "<group>"; };
 		1674638F2AE8F54B000EDD06 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		167463902AE8F54B000EDD06 /* BluetoothClassicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothClassicController.swift; sourceTree = "<group>"; };
 		167463912AE8F54B000EDD06 /* ShowBluetoothModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBluetoothModal.swift; sourceTree = "<group>"; };
@@ -50,6 +51,7 @@
 		160D32EF2AE250C800995D19 = {
 			isa = PBXGroup;
 			children = (
+				1660F17C2B50F58B008122C3 /* Docs.md */,
 				167AFF872AE7B97F0070B57A /* README.md */,
 				167AFF852AE7B9320070B57A /* .gitignore */,
 				160D32FA2AE250C800995D19 /* BLEStudy */,

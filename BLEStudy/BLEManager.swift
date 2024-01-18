@@ -29,14 +29,14 @@ class BluetoothLEManager : NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
         super.init()
         let options = [CBCentralManagerOptionRestoreIdentifierKey: restoreIdentifier] // UUID지정 앱이 백그라운드에서 종료되었을 때 연결된 주변 장치와의 연결을 유지하거나 복원하기 위해 사용됩니다.
         self.centralManager = CBCentralManager(delegate: self, queue: nil, options: options as [String : Any])
-            }
+    }
 
 
     private func setupCentralManager() {
-            centralManager = CBCentralManager(delegate: self, queue: nil) // CBCentralManager 객체를 초기화
+        centralManager = CBCentralManager(delegate: self, queue: nil) // CBCentralManager 객체를 초기화
         // delegate: self: CBCentralManager의 델리게이트(delegate)를 현재 클래스(즉, self)로 설정합니다. 이렇게 하면 CBCentralManager에서 발생하는 이벤트(예: Bluetooth 상태 변경, 주변 장치 발견 등)에 대한 콜백을 현재 클래스에서 받을 수 있습니다. 이를 위해서는 현재 클래스가 CBCentralManagerDelegate 프로토콜을 준수해야 합니다.
         // queue: nil: 이 매개변수는 델리게이트 메서드가 실행될 디스패치 큐(dispatch queue)를 지정합니다. nil로 설정하면 메인 큐에서 델리게이트 메서드가 실행됩니다. 특정 큐에서 이벤트를 처리하려면 해당 큐를 지정할 수 있습니다.
-        }
+    }
 
 
     func connect(to peripheral: CBPeripheral) {
@@ -45,21 +45,21 @@ class BluetoothLEManager : NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
     }
 
 
-        func startScanning() {
-            if centralManager.state == .poweredOn { // Bluetooth 중앙 관리자의 상태를 나타내는 state라는 속성이 .poweredOn이면
-                centralManager.scanForPeripherals(withServices: nil, options: nil) // 주변장치 탐색
-                // withServices: 스캔하려는 서비스의 UUID 목록입니다. nil로 설정하면 모든 서비스를 가진 주변 장치를 스캔합니다. 특정 서비스만 스캔하려면 "withServices: [serviceUUID]"를 사용
-                // options: 스캔 옵션을 지정하는 딕셔너리입니다. 예를 들어, 이전에 연결이 끊어진 주변 장치를 스캔하려면 CBCentralManagerScanOptionAllowDuplicatesKey 옵션을 사용할 수 있습니다. nil로 설정하면 기본 옵션을 사용합니다.
-                print("스캔 시작...")
-            } else {
-                print("스캔 불가")
-            }
-        } // 주변 장치 스캔 시작
+    func startScanning() {
+        if centralManager.state == .poweredOn { // Bluetooth 중앙 관리자의 상태를 나타내는 state라는 속성이 .poweredOn이면
+            centralManager.scanForPeripherals(withServices: nil, options: nil) // 주변장치 탐색
+            // withServices: 스캔하려는 서비스의 UUID 목록입니다. nil로 설정하면 모든 서비스를 가진 주변 장치를 스캔합니다. 특정 서비스만 스캔하려면 "withServices: [serviceUUID]"를 사용
+            // options: 스캔 옵션을 지정하는 딕셔너리입니다. 예를 들어, 이전에 연결이 끊어진 주변 장치를 스캔하려면 CBCentralManagerScanOptionAllowDuplicatesKey 옵션을 사용할 수 있습니다. nil로 설정하면 기본 옵션을 사용합니다.
+            print("스캔 시작...")
+        } else {
+            print("스캔 불가")
+        }
+    } // 주변 장치 스캔 시작
 
-        func stopScanning() {
-            centralManager.stopScan()
-            print("스캔 중지...")
-        } // 주변 장치 스캔 중지
+    func stopScanning() {
+        centralManager.stopScan()
+        print("스캔 중지...")
+    } // 주변 장치 스캔 중지
 
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
@@ -158,20 +158,20 @@ class BluetoothLEManager : NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
         } // 오류 확인
         guard let services = peripheral.services else { print("서비스 검색 없음?") 
             return }
-
-            for service in services {
-                // 원하는 서비스의 UUID를 확인합니다.
-                if service.uuid.uuidString.contains("9BD1EF8F-4519-FCAD") {
-                    // 원하는 서비스를 찾았을 때 처리할 작업을 수행합니다.
-                    print("원하는 서비스를 찾았습니다: \(service)")
-                    // 예를 들어, 해당 서비스의 특성을 탐색할 수 있습니다.
-                    print(peripheral.discoverCharacteristics(nil, for: service))
-                    peripheral.discoverCharacteristics(nil, for: service)
-                } else { 
-                    print("원하던 서비스가 아닙니다만 검색은 해봄: \(service)")
-                    peripheral.discoverCharacteristics(nil, for: service)
-                }
+        
+        for service in services {
+            // 원하는 서비스의 UUID를 확인합니다.
+            if service.uuid.uuidString.contains("9BD1EF8F-4519-FCAD") {
+                // 원하는 서비스를 찾았을 때 처리할 작업을 수행합니다.
+                print("원하는 서비스를 찾았습니다: \(service)")
+                // 예를 들어, 해당 서비스의 특성을 탐색할 수 있습니다.
+                print(peripheral.discoverCharacteristics(nil, for: service))
+                peripheral.discoverCharacteristics(nil, for: service)
+            } else { 
+                print("원하던 서비스가 아닙니다만 검색은 해봄: \(service)")
+                peripheral.discoverCharacteristics(nil, for: service)
             }
+        }
     }
 
 

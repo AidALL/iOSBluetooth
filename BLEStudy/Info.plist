@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UISupportedExternalAccessoryProtocols</key>
-	<array>
-		<string>클래식블루투스 이용을 위한 허용이 필요합니다.</string>
-	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -28,6 +24,10 @@
 		<string>bluetooth-central</string>
 		<string>bluetooth-peripheral</string>
 		<string>processing</string>
+	</array>
+	<key>UISupportedExternalAccessoryProtocols</key>
+	<array>
+		<string>클래식블루투스 이용을 위한 허용이 필요합니다.</string>
 	</array>
 </dict>
 </plist>
