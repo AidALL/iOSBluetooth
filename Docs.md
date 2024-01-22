@@ -508,3 +508,72 @@
  - Description
 
     `ShowBluetoothModal` 클래스는 `UIViewController`를 상속받으며, `UITableViewDelegate` 및 `UITableViewDataSource` 프로토콜을 준수합니다. 이 클래스는 블루투스 장치 목록을 표시하는 테이블 뷰를 관리하는 역할을 합니다. `BluetoothLEManager.shared`를 사용하여 블루투스 관련 기능을 수행하며, `tableView` 변수를 통해 장치 목록을 표시합니다. `selectedIndex` 변수는 사용자가 선택한 테이블 뷰 셀의 인덱스를 저장하며, `dismissCompletion` 클로저는 화면이 닫힐 때 호출됩니다. 이 클로저를 통해 다른 뷰 컨트롤러와의 상호작용이나 필요한 작업을 처리할 수 있습니다.
+
+    #### 주요 구성요소
+    
+        `let bluetoothManager`: 싱글턴 인스턴스 `BluetoothLEManager` 를 사용하기 위한 선언
+        `var tableView`: 블루투스 장치 목록을 표기 하기 위한 테이블 뷰 선언
+        `var selectedIndex`: 선택한 인덱스 번호를 저장하기 위한 변수선언
+        `var dismissCompletion`: 화면이 dismiss 되었을때 호출될 클로저
+
+
+
+
+
+### func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+
+ - Description
+ 
+    이 메소드는 `UITableViewDataSource` 프로토콜의 일부로서, 테이블 뷰의 특정 섹션에 표시될 행의 수를 결정합니다. `bluetoothManager.discoveredPeripherals.count`를 반환함으로써, `BluetoothLEManager`에 의해 발견된 주변장치들의 수만큼 행을 테이블 뷰에 생성하도록 지시합니다. 즉, 발견된 각 주변장치에 대해 테이블 뷰에 하나의 행이 할당됩니다.
+
+ - Parameters
+ 
+    `tableView`: 행의 수를 요청하는 `UITableView` 인스턴스입니다.
+    `section`: 행의 수를 결정하려는 테이블 뷰의 섹션 인덱스입니다.
+
+
+
+
+
+### func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+
+ - Description
+
+    `cellForRowAt` 메소드는 `UITableViewDataSource` 프로토콜의 일부로서, 지정된 `indexPath`에 해당하는 테이블 뷰 셀을 생성하고 반환합니다. 이 메소드는 먼저 `dequeueReusableCell(withIdentifier:for:)` 메소드를 사용하여 재사용 가능한 셀을 가져옵니다. 셀의 식별자는 "BluetoothCell"로 지정됩니다. 그 후, `bluetoothManager.discoveredPeripherals` 배열에서 해당 `indexPath.row`에 위치한 주변장치를 가져와 셀에 표시합니다. 셀의 텍스트 레이블에는 주변장치의 이름이 표시되며, 이름이 없는 경우 식별자의 UUID 문자열이 표시됩니다. 마지막으로 구성된 셀을 반환합니다.
+
+ - Parameters
+
+    `tableView`: 셀을 요청하는 `UITableView` 인스턴스입니다.
+    `indexPath`: 셀의 위치를 나타내는 `IndexPath` 객체입니다. `indexPath.row`는 테이블 뷰의 행 인덱스를 나타냅니다.
+
+
+
+
+
+
+### func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+
+ - Description
+
+    `didSelectRowAt` 메소드는 사용자가 테이블 뷰의 특정 행을 선택했을 때 호출됩니다. 이 메소드는 `selectedIndex`를 사용자가 선택한 행의 인덱스(`indexPath.row`)로 설정하고, 이 인덱스를 콘솔에 출력합니다. 그 후, `bluetoothConnect` 클로저를 호출하여 선택된 주변장치에 연결을 시도합니다. 연결이 성공하면, 화면을 닫고(`dismiss(animated:completion:)`), `dismissCompletion` 클로저를 호출하여 추가 작업을 수행합니다. 연결에 실패한 경우, "연결오류" 메시지를 출력하고 함수를 종료합니다.
+
+ - Parameters
+
+    `tableView`: 행 선택 이벤트가 발생한 `UITableView` 인스턴스입니다.
+    `indexPath`: 선택된 행의 위치를 나타내는 `IndexPath` 객체입니다. `indexPath.row`는 선택된 행의 인덱스를 나타냅니다.
+
+
+
+
+
+### func bluetoothConnect(completion: @escaping (Bool) -> Void)
+
+ - Description
+
+    `bluetoothConnect` 함수는 선택된 블루투스 주변장치에 연결을 시도하는 기능을 수행합니다. 이 함수는 `selectedIndex`를 확인하여 현재 선택된 주변장치가 있는지 검사합니다. 선택된 장치가 없으면, `completion` 클로저에 `false`를 전달하고 함수를 종료합니다. 선택된 장치가 있으면, `bluetoothManager.discoveredPeripherals` 배열에서 해당 인덱스의 주변장치를 가져와 연결을 시도합니다. 연결 시도 전에 `bluetoothManager.completion` 프로퍼티에 `completion` 클로저를 설정하여, 연결 결과가 나타나면 적절한 처리를 할 수 있도록 합니다. 연결의 성공 또는 실패는 `CBCentralManagerDelegate`의 메서드에서 처리되며, 해당 메서드에서 `completion` 클로저가 호출됩니다.
+
+ - Parameters
+
+    `completion`: 연결의 성공 여부를 나타내는 `Bool` 값을 전달하는 클로저입니다. 연결이 성공하면 `true`, 실패하면 `false`를 반환합니다.
+
+

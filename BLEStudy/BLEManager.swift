@@ -156,9 +156,9 @@ class BluetoothLEManager : NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
             print("Error discovering services: \(error.localizedDescription)")
             return
         } // 오류 확인
-        guard let services = peripheral.services else { print("서비스 검색 없음?") 
+        guard let services = peripheral.services else { print("서비스 검색 없음?")
             return }
-        
+
         for service in services {
             // 원하는 서비스의 UUID를 확인합니다.
             if service.uuid.uuidString.contains("9BD1EF8F-4519-FCAD") {
@@ -167,7 +167,7 @@ class BluetoothLEManager : NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
                 // 예를 들어, 해당 서비스의 특성을 탐색할 수 있습니다.
                 print(peripheral.discoverCharacteristics(nil, for: service))
                 peripheral.discoverCharacteristics(nil, for: service)
-            } else { 
+            } else {
                 print("원하던 서비스가 아닙니다만 검색은 해봄: \(service)")
                 peripheral.discoverCharacteristics(nil, for: service)
             }
