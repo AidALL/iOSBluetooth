@@ -441,7 +441,7 @@
 
  - Description
  
-    `classic` 함수는 사용자가 클래식 블루투스 버튼을 클릭했을 때 호출되는 이벤트 핸들러입니다. 이 함수는 `BluetoothClassicController`라는 뷰 컨트롤러를 생성하고, 이를 모달 형태로 화면에 표시합니다. 주석 처리된 코드 부분을 보면, 블루투스 스캐닝을 중지하는 b`luetoothManager.stopScanning()` 메소드 호출이 있음을 알 수 있습니다. 이는 클래식 블루투스 모드로 전환하기 전에 기존의 `BLE` 스캐닝을 중지할 수 있는 옵션을 제공합니다.
+    `classic` 함수는 사용자가 클래식 블루투스 버튼을 클릭했을 때 호출되는 이벤트 핸들러입니다. 이 함수는 `BluetoothClassicController`라는 뷰 컨트롤러를 생성하고, 이를 모달 형태로 화면에 표시합니다. 주석 처리된 코드 부분을 보면, 블루투스 스캐닝을 중지하는 `bluetoothManager.stopScanning()` 메소드 호출이 있음을 알 수 있습니다. 이는 클래식 블루투스 모드로 전환하기 전에 기존의 `BLE` 스캐닝을 중지할 수 있는 옵션을 제공합니다.
 
  - Parameters
  

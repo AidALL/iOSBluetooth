@@ -161,7 +161,7 @@ class BluetoothLEManager : NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
 
         for service in services {
             // 원하는 서비스의 UUID를 확인합니다.
-            if service.uuid.uuidString.contains("9BD1EF8F-4519-FCAD") {
+            if service.uuid.uuidString.contains("") {
                 // 원하는 서비스를 찾았을 때 처리할 작업을 수행합니다.
                 print("원하는 서비스를 찾았습니다: \(service)")
                 // 예를 들어, 해당 서비스의 특성을 탐색할 수 있습니다.
@@ -191,12 +191,18 @@ class BluetoothLEManager : NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
                 print("Discovered characteristic: \(characteristic)")
                 // 특정 특성에 대해 특정 작업을 수행하려면, 해당 특성의 UUID를 확인하고 조건부로 작업을 수행하세요.
                 // 예를 들어, 특정 특성의 값을 읽으려면 다음과 같이 할 수 있습니다.
-                // if characteristic.uuid == CBUUID(string: "특정 특성의 UUID") {
-                //     peripheral.readValue(for: characteristic)
-                // }
+//                 if characteristic.uuid == CBUUID(string: "특정 특성의 UUID") {
+//                     peripheral.readValue(for: characteristic)
+//                 }
+                
+                peripheral.readValue(for: characteristic)
+
+                let data = "Yes"
+                let value = Data(data.utf8)
+                peripheral.writeValue(value, for: characteristic, type: .withResponse)
+
                 self.writableCharacteristic = characteristic
                 // 또는 모든 특성의 값을 읽거나 구독하려면 다음과 같이 할 수 있습니다.
-                peripheral.readValue(for: characteristic)
 
                 if characteristic.properties.contains(.notify) {
                     peripheral.setNotifyValue(true, for: characteristic) // 해당 특성에 대한 알림을 활성화하여 구독합니다.
