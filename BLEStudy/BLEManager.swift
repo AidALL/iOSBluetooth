@@ -197,10 +197,6 @@ class BluetoothLEManager : NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
                 
                 peripheral.readValue(for: characteristic)
 
-                let data = "Yes"
-                let value = Data(data.utf8)
-                peripheral.writeValue(value, for: characteristic, type: .withResponse)
-
                 self.writableCharacteristic = characteristic
                 // 또는 모든 특성의 값을 읽거나 구독하려면 다음과 같이 할 수 있습니다.
 

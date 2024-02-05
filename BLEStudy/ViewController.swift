@@ -54,7 +54,7 @@ class ViewController: UIViewController {
     }
 
     @objc func updateData() {
-            let dataToSend = "Hello from AnotherViewController".data(using: .utf8)!
+            let dataToSend = "Yes".data(using: .utf8)!
 
             if let characteristic = bluetoothManager.writableCharacteristic,
                let peripheral = bluetoothManager.connectedPeripheral {
