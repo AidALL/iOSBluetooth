@@ -64,7 +64,19 @@ class ViewController: UIViewController {
                 print("특성 또는 퍼리퍼럴이 nil입니다.")
             }
         }
-    
+
+    @objc func fortest() {
+            let dataToSend = "Yes".data(using: .utf8)!
+
+            if let characteristic = bluetoothManager.writableCharacteristic,
+               let peripheral = bluetoothManager.connectedPeripheral {
+                bluetoothManager.writeValue(toCharacteristic: characteristic, onPeripheral: peripheral, value: dataToSend)
+                print("데이터 전송 성공")
+            } else {
+                print("특성 또는 퍼리퍼럴이 nil입니다.")
+            }
+        } // 테스트용 object func - String이 아닌 다른 방식으로도 데이터 송수신 테스트용 
+
 
     func touchUpScanButton() {
         let button = UIButton(type: .system) // .system = 기본적인 버튼 스타일
@@ -73,7 +85,6 @@ class ViewController: UIViewController {
         button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
         button.frame = CGRect(x: 100, y: 100, width: 150, height: 50) // 버튼 속성
-
         button.addTarget(self, action: #selector (BLEButton), for: .touchUpInside) // 버튼에 연결될 기능
 
         view.addSubview(button) // 화면에 버튼 구현

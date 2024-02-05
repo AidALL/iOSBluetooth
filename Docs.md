@@ -117,7 +117,7 @@
 
  - Description
  
-    이 메소드는 블루투스 주변장치를 스캔하기 시작합니다. 먼저, `centralManager`의 `state` 속성을 확인하여 블루투스가 켜져 있는지 (poweredOn) 확인합니다. 상태가 `poweredOn`이면 `centralManager는 scanForPeripherals(withServices:options:)` 메소드를 사용하여 주변장치를 스캔합니다. `nil`로 설정된 `withServices`는 모든 서비스를 가진 주변 장치를 스캔하며, 특정 서비스만 스캔하고자 할 경우 해당 UUID 목록을 제공할 수 있습니다. `options`는 스캔 옵션을 지정하는데 사용되며, 기본적으로 `nil`로 설정됩니다.
+    이 메소드는 블루투스 주변장치를 스캔하기 시작합니다. 먼저, `centralManager`의 `state` 속성을 확인하여 블루투스가 켜져 있는지 (poweredOn) 확인합니다. 상태가 `poweredOn`이면 `centralManager는 scanForPeripherals(withServices: options:)` 메소드를 사용하여 주변장치를 스캔합니다. `nil`로 설정된 `withServices`는 모든 서비스를 가진 주변 장치를 스캔하며, 특정 서비스만 스캔하고자 할 경우 해당 UUID 목록을 제공할 수 있습니다. `options`는 스캔 옵션을 지정하는데 사용되며, 기본적으로 `nil`로 설정됩니다.
 
     - 주요기능
         블루투스 상태 확인: `centralManager.state`가 `.poweredOn`인지 확인합니다.
